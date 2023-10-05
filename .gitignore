@@ -1,0 +1,6 @@
+Projet1/.gradle/**
+Projet1/.idea/**
+Projet1/app/build/**
+Projet1/app/libs/**
+Projet1/app/src/test/**
+Projet1/app/src/androidTest/**
