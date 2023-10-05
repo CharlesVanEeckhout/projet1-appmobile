@@ -4,9 +4,13 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import ca.qc.cgodin.projet1.model.Login
 import ca.qc.cgodin.projet1.model.Succursale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Response
 
 class SuccursaleViewModel (application: Application) : AndroidViewModel(application) {
     private val repository: SuccursaleRepository
@@ -19,6 +23,14 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
             SuccursaleRoomDatabase.getDatabase(application).succursaleDao()
         repository = SuccursaleRepository(succursalesDao)
         allSuccursales = repository.allSuccursales
+    }
+
+    fun connexionStudent(
+        login: Login,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        repository.connexionStudent(login, funOnResponse, funOnFailure)
     }
 
     // Launching a new coroutine to insert the data in a non-blocking way
