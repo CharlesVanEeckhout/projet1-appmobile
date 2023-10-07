@@ -40,7 +40,7 @@
         android:layout_height="64dp"
         android:layout_margin="16dp"
         android:backgroundTint="#D0D0D0"
-        android:text="@string/btnEnregistrer"
+        android:text="@string/btnModifier"
         android:textColor="#0000FF"
         android:textSize="20sp"
         android:textStyle="bold" />
