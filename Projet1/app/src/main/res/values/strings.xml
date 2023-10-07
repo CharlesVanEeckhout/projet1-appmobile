@@ -11,6 +11,7 @@
     <string name="hint_budget">Budget alloué</string>
     <string name="btnEnregistrer">Enregistrer</string>
     <string name="btnModifier">Modifier</string>
+    <string name="btnDeconnexion">Déconnexion</string>
     <string name="btnConnexion">Connexion</string>
     <string name="txt_identifiezVous">Identifiez-vous!</string>
     <string name="txt_Id">Identifiant :</string>

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/listSuccursalesFragment">
+    app:startDestination="@id/connexionFragment">
 
     <fragment
         android:id="@+id/newSuccursaleFragment"
@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_listSuccursalesFragment_to_editSuccursaleFragment"
             app:destination="@id/editSuccursaleFragment" />
+        <action
+            android:id="@+id/action_listSuccursalesFragment_to_connexionFragment"
+            app:destination="@id/connexionFragment" />
     </fragment>
     <fragment
         android:id="@+id/editSuccursaleFragment"
@@ -33,6 +36,15 @@
         tools:layout="@layout/fragment_edit_succursale" >
         <action
             android:id="@+id/action_editSuccursaleFragment_to_listSuccursalesFragment"
+            app:destination="@id/listSuccursalesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/connexionFragment"
+        android:name="ca.qc.cgodin.projet1.ConnexionFragment"
+        android:label="fragment_connexion"
+        tools:layout="@layout/fragment_connexion" >
+        <action
+            android:id="@+id/action_connexionFragment_to_listSuccursalesFragment"
             app:destination="@id/listSuccursalesFragment" />
     </fragment>
 </navigation>
