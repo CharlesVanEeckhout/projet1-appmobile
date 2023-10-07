@@ -4,8 +4,15 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import ca.qc.cgodin.projet1.model.Login
+import ca.qc.cgodin.projet1.model.schema.Login
 import ca.qc.cgodin.projet1.model.Succursale
+import ca.qc.cgodin.projet1.model.schema.AjoutSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.BudgetSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.CompteSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.ListeSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.RetraitSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.Student
+import ca.qc.cgodin.projet1.model.schema.SuppressionSuccursaleSchema
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
@@ -26,11 +33,67 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
     }
 
     fun connexionStudent(
-        login: Login,
+        body: Login,
         funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
         funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
     ) {
-        repository.connexionStudent(login, funOnResponse, funOnFailure)
+        repository.connexionStudent(body, funOnResponse, funOnFailure)
+    }
+
+    fun enregistrementStudent(
+        body: Student,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        repository.enregistrementStudent(body, funOnResponse, funOnFailure)
+    }
+
+    fun listeSuccursale(
+        body: ListeSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        repository.listeSuccursale(body, funOnResponse, funOnFailure)
+    }
+
+    fun compteSuccursale(
+        body: CompteSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        repository.compteSuccursale(body, funOnResponse, funOnFailure)
+    }
+
+    fun budgetSuccursale(
+        body: BudgetSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        repository.budgetSuccursale(body, funOnResponse, funOnFailure)
+    }
+
+    fun ajoutSuccursale(
+        body: AjoutSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        repository.ajoutSuccursale(body, funOnResponse, funOnFailure)
+    }
+
+    fun retraitSuccursale(
+        body: RetraitSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        repository.retraitSuccursale(body, funOnResponse, funOnFailure)
+    }
+
+    fun suppressionSuccursale(
+        body: SuppressionSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        repository.suppressionSuccursale(body, funOnResponse, funOnFailure)
     }
 
     // Launching a new coroutine to insert the data in a non-blocking way

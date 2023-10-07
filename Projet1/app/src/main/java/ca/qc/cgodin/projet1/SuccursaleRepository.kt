@@ -1,8 +1,15 @@
 package ca.qc.cgodin.projet1
 
 import androidx.lifecycle.LiveData
-import ca.qc.cgodin.projet1.model.Login
+import ca.qc.cgodin.projet1.model.schema.Login
 import ca.qc.cgodin.projet1.model.Succursale
+import ca.qc.cgodin.projet1.model.schema.AjoutSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.BudgetSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.CompteSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.ListeSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.RetraitSuccursaleSchema
+import ca.qc.cgodin.projet1.model.schema.Student
+import ca.qc.cgodin.projet1.model.schema.SuppressionSuccursaleSchema
 import ca.qc.cgodin.projet1.network.RetrofitInstance
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -31,12 +38,12 @@ class SuccursaleRepository(private val succusaleDao: SuccursaleDao) {
     }
 
     fun connexionStudent(
-        login: Login,
+        body: Login,
         funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
         funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
     ) {
         RetrofitInstance.retrofitService.connexionStudent(
-            login
+            body
         ).enqueue(
             object: Callback<ResponseBody> {
                 override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
@@ -49,4 +56,145 @@ class SuccursaleRepository(private val succusaleDao: SuccursaleDao) {
             }
         )
     }
+
+    fun enregistrementStudent(
+        body: Student,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        RetrofitInstance.retrofitService.enregistrementStudent(
+            body
+        ).enqueue(
+            object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    funOnResponse(call, response)
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    funOnFailure(call, t)
+                }
+            }
+        )
+    }
+
+    fun listeSuccursale(
+        body: ListeSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        RetrofitInstance.retrofitService.listeSuccursale(
+            body
+        ).enqueue(
+            object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    funOnResponse(call, response)
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    funOnFailure(call, t)
+                }
+            }
+        )
+    }
+
+    fun compteSuccursale(
+        body: CompteSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        RetrofitInstance.retrofitService.compteSuccursale(
+            body
+        ).enqueue(
+            object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    funOnResponse(call, response)
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    funOnFailure(call, t)
+                }
+            }
+        )
+    }
+
+    fun budgetSuccursale(
+        body: BudgetSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        RetrofitInstance.retrofitService.budgetSuccursale(
+            body
+        ).enqueue(
+            object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    funOnResponse(call, response)
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    funOnFailure(call, t)
+                }
+            }
+        )
+    }
+
+    fun ajoutSuccursale(
+        body: AjoutSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        RetrofitInstance.retrofitService.ajoutSuccursale(
+            body
+        ).enqueue(
+            object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    funOnResponse(call, response)
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    funOnFailure(call, t)
+                }
+            }
+        )
+    }
+
+    fun retraitSuccursale(
+        body: RetraitSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        RetrofitInstance.retrofitService.retraitSuccursale(
+            body
+        ).enqueue(
+            object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    funOnResponse(call, response)
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    funOnFailure(call, t)
+                }
+            }
+        )
+    }
+
+    fun suppressionSuccursale(
+        body: SuppressionSuccursaleSchema,
+        funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
+        funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
+    ) {
+        RetrofitInstance.retrofitService.suppressionSuccursale(
+            body
+        ).enqueue(
+            object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    funOnResponse(call, response)
+                }
+
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    funOnFailure(call, t)
+                }
+            }
+        )
+    }
+
 }

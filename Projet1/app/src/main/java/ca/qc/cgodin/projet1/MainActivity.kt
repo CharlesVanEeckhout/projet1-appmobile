@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.ViewModelProvider
-import ca.qc.cgodin.projet1.model.Login
-import ca.qc.cgodin.projet1.network.RetrofitInstance
-import ca.qc.cgodin.projet1.network.SuccursaleApiService
+import ca.qc.cgodin.projet1.model.schema.Login
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -24,7 +22,8 @@ class MainActivity : AppCompatActivity() {
                 this,
                 succursaleViewModelFactory)
             succursaleViewModel = succursaleViewModelProvider[SuccursaleViewModel::class.java]
-            succursaleViewModel.connexionStudent(Login(3335555, "Secret88888"),
+            succursaleViewModel.connexionStudent(
+                Login(3335555, "Secret88888"),
                 { call: Call<ResponseBody>, response: Response<ResponseBody> ->
                     Log.i("funOnResponse call", call.toString())
                     Log.i("funOnResponse response", response.toString())
