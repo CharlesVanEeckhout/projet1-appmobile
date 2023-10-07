@@ -1,10 +1,13 @@
 package ca.qc.cgodin.projet1
 
+import android.app.Application
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import ca.qc.cgodin.projet1.databinding.FragmentEditSuccursaleBinding
+import ca.qc.cgodin.projet1.databinding.FragmentListSuccursalesBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +24,10 @@ class ListSuccursalesFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private var _binding: FragmentListSuccursalesBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var application : Application;
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -33,8 +40,20 @@ class ListSuccursalesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentListSuccursalesBinding.inflate(inflater, container, false)
+
+        val view = binding.root
+        application = activity?.applicationContext  as Application
+
+        //set les deux textBox au départ
+        binding.btnAjouterVille.setOnClickListener {
+
+        }
+
+
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_list_succursales, container, false)
+        return view
     }
 
     companion object {
@@ -55,5 +74,10 @@ class ListSuccursalesFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

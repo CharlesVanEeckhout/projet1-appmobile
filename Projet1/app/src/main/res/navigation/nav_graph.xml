@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listSuccursalesFragment">
+
+    <fragment
+        android:id="@+id/newSuccursaleFragment"
+        android:name="ca.qc.cgodin.projet1.NewSuccursaleFragment"
+        android:label="fragment_new_succursale"
+        tools:layout="@layout/fragment_new_succursale" >
+        <action
+            android:id="@+id/action_newSuccursaleFragment_to_listSuccursalesFragment"
+            app:destination="@id/listSuccursalesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listSuccursalesFragment"
+        android:name="ca.qc.cgodin.projet1.ListSuccursalesFragment"
+        android:label="fragment_list_succursales"
+        tools:layout="@layout/fragment_list_succursales" >
+        <action
+            android:id="@+id/action_listSuccursalesFragment_to_newSuccursaleFragment"
+            app:destination="@id/newSuccursaleFragment" />
+        <action
+            android:id="@+id/action_listSuccursalesFragment_to_editSuccursaleFragment"
+            app:destination="@id/editSuccursaleFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editSuccursaleFragment"
+        android:name="ca.qc.cgodin.projet1.EditSuccursaleFragment"
+        android:label="fragment_edit_succursale"
+        tools:layout="@layout/fragment_edit_succursale" >
+        <action
+            android:id="@+id/action_editSuccursaleFragment_to_listSuccursalesFragment"
+            app:destination="@id/listSuccursalesFragment" />
+    </fragment>
+</navigation>
