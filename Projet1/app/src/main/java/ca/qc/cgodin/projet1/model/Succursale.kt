@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-@Entity(tableName = "succursale_table")
+@Entity(tableName = "succursale_table", primaryKeys = ["Aut", "Ville"])
 data class Succursale(
-    @PrimaryKey(autoGenerate = false)
     @SerializedName("Aut")
     val Aut: Int,
     @SerializedName("Ville")

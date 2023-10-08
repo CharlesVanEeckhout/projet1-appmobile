@@ -109,7 +109,7 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
         repository.updateSuccursale(succursale)
     }
 
-    fun getSuccursale(Aut: Int) = viewModelScope.launch(Dispatchers.IO) {
-        repository.getSuccursale(Aut)
+    fun getSuccursale(Aut: Int, Ville: String) = viewModelScope.launch(Dispatchers.IO) {
+        repository.getSuccursale(Aut, Ville)
     }
 }

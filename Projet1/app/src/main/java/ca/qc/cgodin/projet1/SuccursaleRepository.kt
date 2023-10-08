@@ -33,8 +33,8 @@ class SuccursaleRepository(private val succusaleDao: SuccursaleDao) {
         succusaleDao.updateSuccursale(succursale)
     }
 
-    suspend fun getSuccursale(Aut: Int) {
-        succusaleDao.getSuccursale(Aut)
+    suspend fun getSuccursale(Aut: Int, Ville: String) {
+        succusaleDao.getSuccursale(Aut, Ville)
     }
 
     fun connexionStudent(
