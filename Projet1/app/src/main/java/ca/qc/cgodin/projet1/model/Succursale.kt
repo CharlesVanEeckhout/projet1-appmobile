@@ -8,7 +8,7 @@ import java.io.Serializable
 @Entity(tableName = "succursale_table", primaryKeys = ["Aut", "Ville"])
 data class Succursale(
     @SerializedName("Aut")
-    val Aut: Int,
+    val Aut: Long,
     @SerializedName("Ville")
     val Ville: String,
     @SerializedName("Budget")
