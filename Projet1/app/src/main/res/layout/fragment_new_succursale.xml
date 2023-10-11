@@ -12,7 +12,6 @@
         android:id="@+id/imageVilleAjout"
         android:layout_width="match_parent"
         android:layout_height="206dp"
-        android:src="@tools:sample/avatars"
         tools:srcCompat="@drawable/ville2" />
 
     <EditText

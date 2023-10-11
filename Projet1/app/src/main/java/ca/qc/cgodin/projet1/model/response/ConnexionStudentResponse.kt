@@ -7,5 +7,5 @@ data class ConnexionStudentResponse (
     @SerializedName("statut")
     val statut: String,
     @SerializedName("student")
-    val student: StudentResponse
+    val student: StudentResponse?
 ) : Serializable

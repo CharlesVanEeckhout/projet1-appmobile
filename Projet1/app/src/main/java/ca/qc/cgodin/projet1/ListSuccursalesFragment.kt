@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.navGraphViewModels
 import ca.qc.cgodin.projet1.databinding.FragmentListSuccursalesBinding
 import ca.qc.cgodin.projet1.model.response.ListeSuccursaleResponse
 import ca.qc.cgodin.projet1.model.schema.ListeSuccursaleSchema
@@ -28,7 +29,7 @@ class ListSuccursalesFragment : Fragment() {
     private var _binding: FragmentListSuccursalesBinding? = null
     private val binding get() = _binding!!
     private lateinit var application : Application;
-    private lateinit var viewModel: SuccursaleViewModel // TODO: jai oublie comment apporter le viewmodel dans le fragment, ca devrait etre ds labo 8
+    private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.nav_graph)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,7 +65,7 @@ class ListSuccursalesFragment : Fragment() {
                 succursaleListAdapter.setSuccursales(listeSuccursale.succursales)
             },
             { _: Call<ResponseBody>, t: Throwable ->
-                // TODO: "Echec du chargement de vos succursales. Reessayez plus tard."
+                // TODO: setText(resources.getText(R.string.erreur_timeout))
             })
 
         // TODO: setonclick boutons edit et delete des item du adapter

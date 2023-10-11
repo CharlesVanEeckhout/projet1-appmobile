@@ -8,7 +8,6 @@
 
     <TextView
         android:id="@+id/idBudget"
-        style="@style/student_info"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
@@ -21,7 +20,6 @@
 
     <TextView
         android:id="@+id/idAjoutVille"
-        style="@style/student_info"
         android:layout_width="230dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"

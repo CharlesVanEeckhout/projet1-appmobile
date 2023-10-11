@@ -16,4 +16,6 @@
     <string name="txt_identifiezVous">Identifiez-vous!</string>
     <string name="txt_Id">Identifiant :</string>
     <string name="txt_mdp">Mot de passe :</string>
+    <string name="erreur_timeout">Échec de la communication avec le serveur. Réessayez plus tard.</string>
+    <string name="erreur_connexion_invalide">Connexion invalide.</string>
 </resources>
