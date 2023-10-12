@@ -4,15 +4,15 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import ca.qc.cgodin.projet1.model.schema.Login
+import ca.qc.cgodin.projet1.model.data.Login
 import ca.qc.cgodin.projet1.model.Succursale
-import ca.qc.cgodin.projet1.model.schema.AjoutSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.BudgetSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.CompteSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.ListeSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.RetraitSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.Student
-import ca.qc.cgodin.projet1.model.schema.SuppressionSuccursaleSchema
+import ca.qc.cgodin.projet1.model.data.AjoutSuccursale
+import ca.qc.cgodin.projet1.model.data.BudgetSuccursale
+import ca.qc.cgodin.projet1.model.data.CompteSuccursale
+import ca.qc.cgodin.projet1.model.data.ListeSuccursale
+import ca.qc.cgodin.projet1.model.data.RetraitSuccursale
+import ca.qc.cgodin.projet1.model.data.Student
+import ca.qc.cgodin.projet1.model.data.SuppressionSuccursale
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import okhttp3.ResponseBody
@@ -49,7 +49,7 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
     }
 
     fun listeSuccursale(
-        body: ListeSuccursaleSchema,
+        body: ListeSuccursale,
         funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
         funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
     ) {
@@ -57,7 +57,7 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
     }
 
     fun compteSuccursale(
-        body: CompteSuccursaleSchema,
+        body: CompteSuccursale,
         funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
         funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
     ) {
@@ -65,7 +65,7 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
     }
 
     fun budgetSuccursale(
-        body: BudgetSuccursaleSchema,
+        body: BudgetSuccursale,
         funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
         funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
     ) {
@@ -73,7 +73,7 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
     }
 
     fun ajoutSuccursale(
-        body: AjoutSuccursaleSchema,
+        body: AjoutSuccursale,
         funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
         funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
     ) {
@@ -81,7 +81,7 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
     }
 
     fun retraitSuccursale(
-        body: RetraitSuccursaleSchema,
+        body: RetraitSuccursale,
         funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
         funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
     ) {
@@ -89,7 +89,7 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
     }
 
     fun suppressionSuccursale(
-        body: SuppressionSuccursaleSchema,
+        body: SuppressionSuccursale,
         funOnResponse: ((Call<ResponseBody>, Response<ResponseBody>) -> Unit),
         funOnFailure: ((Call<ResponseBody>, Throwable) -> Unit)
     ) {

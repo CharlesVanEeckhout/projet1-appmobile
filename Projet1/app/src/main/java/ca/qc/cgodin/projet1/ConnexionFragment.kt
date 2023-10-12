@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import ca.qc.cgodin.projet1.databinding.FragmentConnexionBinding
-import ca.qc.cgodin.projet1.databinding.FragmentListSuccursalesBinding
 import ca.qc.cgodin.projet1.model.response.ConnexionStudentResponse
 import ca.qc.cgodin.projet1.model.response.ErrorResponse
-import ca.qc.cgodin.projet1.model.response.ListeSuccursaleResponse
-import ca.qc.cgodin.projet1.model.schema.Login
+import ca.qc.cgodin.projet1.model.data.Login
 import com.google.gson.Gson
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -76,14 +74,12 @@ class ConnexionFragment : Fragment() {
                             //TODO: change fragment à ListSuccursalesFragment, passe aut en paramètre
                             val aut = intId.toString().padStart(7, '0') +
                                     intPartieMdp.toString().padStart(5, '0')
-                            //binding.tvResultatConnexion.setText("connexion réussie")
-                            val bundle = Bundle().apply {
-                                putSerializable(ListSuccursalesFragment.ARG_AUT, aut.toLong())
-                            }
-                            findNavController().navigate(
-                                R.id.action_connexionFragment_to_listSuccursalesFragment,
-                                bundle
+
+                            val action = ConnexionFragmentDirections
+                                .actionConnexionFragmentToListSuccursalesFragment(
+                                aut.toLong()
                             )
+                            findNavController().navigate(action)
                         }
                     }
                     else{
@@ -106,6 +102,6 @@ class ConnexionFragment : Fragment() {
          * @return A new instance of fragment ConnexionFragment.
          */
         @JvmStatic
-        fun newInstance(param1: String, param2: String) = ConnexionFragment()
+        fun newInstance() = ConnexionFragment()
     }
 }

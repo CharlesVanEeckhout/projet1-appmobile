@@ -13,6 +13,10 @@
         <action
             android:id="@+id/action_newSuccursaleFragment_to_listSuccursalesFragment"
             app:destination="@id/listSuccursalesFragment" />
+        <argument
+            android:name="aut"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
     <fragment
         android:id="@+id/listSuccursalesFragment"
@@ -28,6 +32,10 @@
         <action
             android:id="@+id/action_listSuccursalesFragment_to_connexionFragment"
             app:destination="@id/connexionFragment" />
+        <argument
+            android:name="aut"
+            app:argType="long"
+            android:defaultValue="-1L" />
     </fragment>
     <fragment
         android:id="@+id/editSuccursaleFragment"
@@ -37,6 +45,13 @@
         <action
             android:id="@+id/action_editSuccursaleFragment_to_listSuccursalesFragment"
             app:destination="@id/listSuccursalesFragment" />
+        <argument
+            android:name="aut"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <argument
+            android:name="ville"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/connexionFragment"

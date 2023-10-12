@@ -1,4 +1,4 @@
-package ca.qc.cgodin.projet1.model.schema
+package ca.qc.cgodin.projet1.model.data
 
 data class Student(
     val Mat: Int,

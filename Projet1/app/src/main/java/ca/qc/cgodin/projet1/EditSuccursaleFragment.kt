@@ -7,20 +7,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import ca.qc.cgodin.projet1.databinding.FragmentEditSuccursaleBinding
 import ca.qc.cgodin.projet1.model.response.AjoutSuccursaleResponse
-import ca.qc.cgodin.projet1.model.response.ListeSuccursaleResponse
-import ca.qc.cgodin.projet1.model.response.RetraitSuccursaleResponse
-import ca.qc.cgodin.projet1.model.schema.AjoutSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.RetraitSuccursaleSchema
+import ca.qc.cgodin.projet1.model.data.AjoutSuccursale
+import ca.qc.cgodin.projet1.model.data.RetraitSuccursale
 import com.google.gson.Gson
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
 
 /**
@@ -29,10 +25,7 @@ import retrofit2.Response
  * create an instance of this fragment.
  */
 class EditSuccursaleFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var _aut: Long? = null
-    private val aut get() = _aut!!
-    private lateinit var ville: String
+    private val args: EditSuccursaleFragmentArgs by navArgs()
 
     private var _binding: FragmentEditSuccursaleBinding? = null
     private val binding get() = _binding!!
@@ -41,14 +34,10 @@ class EditSuccursaleFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            _aut = it.getLong(ARG_AUT, -1)
-            ville = it.getString(ARG_VILLE, "")
+        if(args.aut < 0 || args.aut > 1e12-1){
+            throw Exception("aut invalide: ${args.aut}")
         }
-        if(aut < 0 || aut > 1e12-1){
-            throw Exception("aut invalide: $aut")
-        }
-        if(ville == ""){
+        if(args.ville == ""){
             throw Exception("ville invalide")
         }
     }
@@ -83,9 +72,9 @@ class EditSuccursaleFragment : Fragment() {
             }
 
             // editer c'est juste enlever et ajouter
-            if(ville != strVille){
+            if(args.ville != strVille){
                 // enlève la vieille succursale
-                val retraitSuccursaleSchema = RetraitSuccursaleSchema(aut, ville)
+                val retraitSuccursaleSchema = RetraitSuccursale(args.aut, args.ville)
                 viewModel.retraitSuccursale(retraitSuccursaleSchema,
                     { _: Call<ResponseBody>, response: Response<ResponseBody> ->
                         /*
@@ -95,7 +84,7 @@ class EditSuccursaleFragment : Fragment() {
                         soit elle n'a pas pu être enlevée parce qu'elle n'a jamais existée.
                         */
                         // ajoute la nouvelle succursale
-                        val ajoutSuccursaleSchema = AjoutSuccursaleSchema(aut, strVille, intBudget)
+                        val ajoutSuccursaleSchema = AjoutSuccursale(args.aut, strVille, intBudget)
                         ajoutSuccursale(ajoutSuccursaleSchema)
                     },
                     { _: Call<ResponseBody>, t: Throwable ->
@@ -104,7 +93,7 @@ class EditSuccursaleFragment : Fragment() {
             }
             else{
                 // ajoute la nouvelle succursale en écrasant la vieille succursale
-                val ajoutSuccursaleSchema = AjoutSuccursaleSchema(aut, strVille, intBudget)
+                val ajoutSuccursaleSchema = AjoutSuccursale(args.aut, strVille, intBudget)
                 ajoutSuccursale(ajoutSuccursaleSchema)
             }
         }
@@ -113,7 +102,7 @@ class EditSuccursaleFragment : Fragment() {
         return view
     }
 
-    fun ajoutSuccursale(ajoutSuccursaleSchema: AjoutSuccursaleSchema){
+    fun ajoutSuccursale(ajoutSuccursaleSchema: AjoutSuccursale){
         viewModel.ajoutSuccursale(ajoutSuccursaleSchema,
             { _: Call<ResponseBody>, response: Response<ResponseBody> ->
                 val responseJson: String = response.body()?.string() ?: "null"
@@ -124,13 +113,11 @@ class EditSuccursaleFragment : Fragment() {
                 }
                 else{
                     //modification réussie
-                    val bundle = Bundle().apply {
-                        putSerializable(ListSuccursalesFragment.ARG_AUT, aut)
-                    }
-                    findNavController().navigate(
-                        R.id.action_editSuccursaleFragment_to_listSuccursalesFragment,
-                        bundle
-                    )
+                    val action = EditSuccursaleFragmentDirections
+                        .actionEditSuccursaleFragmentToListSuccursalesFragment(
+                            args.aut
+                        )
+                    findNavController().navigate(action)
                 }
             },
             { _: Call<ResponseBody>, t: Throwable ->
@@ -140,25 +127,14 @@ class EditSuccursaleFragment : Fragment() {
     }
 
     companion object {
-        const val ARG_AUT = "Aut"
-        const val ARG_VILLE = "Ville"
-
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
-         * @param aut Parameter 1.
-         * @param ville Parameter 2.
          * @return A new instance of fragment EditSuccursaleFragment.
          */
         @JvmStatic
-        fun newInstance(aut: Long, ville: String) =
-            EditSuccursaleFragment().apply {
-                arguments = Bundle().apply {
-                    putLong(ARG_AUT, aut)
-                    putString(ARG_VILLE, ville)
-                }
-            }
+        fun newInstance() = EditSuccursaleFragment()
     }
 
     override fun onDestroyView() {

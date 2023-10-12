@@ -1,13 +1,13 @@
 package ca.qc.cgodin.projet1.network
 
-import ca.qc.cgodin.projet1.model.schema.AjoutSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.BudgetSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.CompteSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.ListeSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.Login
-import ca.qc.cgodin.projet1.model.schema.RetraitSuccursaleSchema
-import ca.qc.cgodin.projet1.model.schema.Student
-import ca.qc.cgodin.projet1.model.schema.SuppressionSuccursaleSchema
+import ca.qc.cgodin.projet1.model.data.AjoutSuccursale
+import ca.qc.cgodin.projet1.model.data.BudgetSuccursale
+import ca.qc.cgodin.projet1.model.data.CompteSuccursale
+import ca.qc.cgodin.projet1.model.data.ListeSuccursale
+import ca.qc.cgodin.projet1.model.data.Login
+import ca.qc.cgodin.projet1.model.data.RetraitSuccursale
+import ca.qc.cgodin.projet1.model.data.Student
+import ca.qc.cgodin.projet1.model.data.SuppressionSuccursale
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -20,15 +20,15 @@ interface SuccursaleApiService {
     @POST("/students/Enregistrement")
     fun enregistrementStudent(@Body body: Student): Call<ResponseBody>
     @POST("/succursales/Succursale-Liste")
-    fun listeSuccursale(@Body body: ListeSuccursaleSchema): Call<ResponseBody>
+    fun listeSuccursale(@Body body: ListeSuccursale): Call<ResponseBody>
     @POST("/succursales/Succursale-Compte")
-    fun compteSuccursale(@Body body: CompteSuccursaleSchema): Call<ResponseBody>
+    fun compteSuccursale(@Body body: CompteSuccursale): Call<ResponseBody>
     @POST("/succursales/Succursale-Budget")
-    fun budgetSuccursale(@Body body: BudgetSuccursaleSchema): Call<ResponseBody>
+    fun budgetSuccursale(@Body body: BudgetSuccursale): Call<ResponseBody>
     @POST("/succursales/Succursale-Ajout")
-    fun ajoutSuccursale(@Body body: AjoutSuccursaleSchema): Call<ResponseBody>
+    fun ajoutSuccursale(@Body body: AjoutSuccursale): Call<ResponseBody>
     @DELETE("/succursales/Succursale-Retrait")
-    fun retraitSuccursale(@Body body: RetraitSuccursaleSchema): Call<ResponseBody>
+    fun retraitSuccursale(@Body body: RetraitSuccursale): Call<ResponseBody>
     @DELETE("/succursales/Succursale-Suppression")
-    fun suppressionSuccursale(@Body body: SuppressionSuccursaleSchema): Call<ResponseBody>
+    fun suppressionSuccursale(@Body body: SuppressionSuccursale): Call<ResponseBody>
 }
