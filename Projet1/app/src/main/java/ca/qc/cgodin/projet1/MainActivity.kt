@@ -22,17 +22,6 @@ class MainActivity : AppCompatActivity() {
                 this,
                 succursaleViewModelFactory)
             succursaleViewModel = succursaleViewModelProvider[SuccursaleViewModel::class.java]
-            succursaleViewModel.connexionStudent(
-                Login(3335555, "Secret88888"),
-                { call: Call<ResponseBody>, response: Response<ResponseBody> ->
-                    Log.i("funOnResponse call", call.toString())
-                    Log.i("funOnResponse response", response.toString())
-                    Log.i("funOnResponse response body", response.body()?.string() ?: "null")
-                },
-                { call: Call<ResponseBody>, t: Throwable ->
-                    Log.i("funOnResponse call", call.toString())
-                    Log.i("funOnResponse t", t.toString())
-                })
         }catch (e: IllegalArgumentException){
             e.printStackTrace()
         }

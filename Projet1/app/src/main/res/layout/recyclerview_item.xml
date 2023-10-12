@@ -7,76 +7,70 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/idBudget"
-        android:layout_width="230dp"
+        android:id="@+id/tvVille"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="#D0D0D0"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvBudget"
         app:layout_constraintEnd_toStartOf="@+id/btnEdit"
-        app:layout_constraintStart_toEndOf="@+id/idBudgetTitre"
-        app:layout_constraintTop_toBottomOf="@+id/idAjoutVille" />
-
-    <TextView
-        android:id="@+id/idAjoutVille"
-        android:layout_width="230dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="#D0D0D0"
-        app:layout_constraintBottom_toTopOf="@+id/idBudget"
-        app:layout_constraintEnd_toStartOf="@+id/btnEdit"
-        app:layout_constraintStart_toEndOf="@+id/idVilleTitre"
+        app:layout_constraintStart_toStartOf="@+id/tvBudget"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/idVilleTitre"
+        android:id="@+id/tvBudget"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnEdit"
+        app:layout_constraintStart_toEndOf="@+id/lblBudget"
+        app:layout_constraintTop_toBottomOf="@+id/tvVille" />
+
+    <TextView
+        android:id="@+id/lblVille"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginStart="8dp"
         android:text="@string/ville"
-        android:textColor="#0000FF"
+        android:textColor="@color/bleu_projet1"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/idBudgetTitre"
-        app:layout_constraintEnd_toStartOf="@+id/idAjoutVille"
+        app:layout_constraintBottom_toBottomOf="@+id/tvVille"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/tvVille" />
 
     <TextView
-        android:id="@+id/idBudgetTitre"
+        android:id="@+id/lblBudget"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginStart="8dp"
         android:text="@string/budget"
-        android:textColor="#0000FF"
+        android:textColor="@color/bleu_projet1"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/idBudget"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBudget"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/idVilleTitre" />
-
-    <ImageButton
-        android:id="@+id/btnDelete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/baseline_delete_forever_24" />
+        app:layout_constraintTop_toTopOf="@+id/tvBudget" />
 
     <ImageButton
         android:id="@+id/btnEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="8dp"
         android:src="@drawable/baseline_edit_note_24"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnDelete"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_delete_forever_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,5 +7,8 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gris_textbox_projet1">#FFCCCCCC</color>
+    <color name="gris_bg_projet1">#FFD0D0D0</color>
+    <color name="bleu_projet1">#FF0030E0</color>
+    <color name="rouge_projet1">#FFC00020</color>
+    <color name="mauve_projet1">#FF800080</color>
 </resources>

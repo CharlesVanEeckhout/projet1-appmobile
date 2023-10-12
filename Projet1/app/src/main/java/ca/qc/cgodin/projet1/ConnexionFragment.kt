@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.navGraphViewModels
 import ca.qc.cgodin.projet1.databinding.FragmentConnexionBinding
 import ca.qc.cgodin.projet1.databinding.FragmentListSuccursalesBinding
@@ -42,7 +43,7 @@ class ConnexionFragment : Fragment() {
 
         binding.btnConnexion.setOnClickListener {
             //TODO: validation textbox
-            binding.tvResultatConnexion.setText("...")
+            binding.tvResultatConnexion.setText(resources.getText(R.string.connexion_attente))
             val strId = binding.editID.text.toString()
             val strMdp = binding.editMDP.text.toString()
             if(strId.length != 7 || strMdp.length < 6){
@@ -76,12 +77,19 @@ class ConnexionFragment : Fragment() {
                             //TODO: change fragment à ListSuccursalesFragment, passe aut en paramètre
                             val aut = intId.toString().padStart(7, '0') +
                                     intPartieMdp.toString().padStart(5, '0')
-                            binding.tvResultatConnexion.setText("connexion réussie")
+                            //binding.tvResultatConnexion.setText("connexion réussie")
+                            val bundle = Bundle().apply {
+                                putSerializable(ListSuccursalesFragment.ARG_AUT, aut.toLong())
+                            }
+                            findNavController().navigate(
+                                R.id.action_connexionFragment_to_listSuccursalesFragment,
+                                bundle
+                            )
                         }
                     }
                     else{
 
-                        binding.tvResultatConnexion.setText("Erreur: " + error.error)
+                        binding.tvResultatConnexion.setText(error.error)
                     }
                 },
                 { _: Call<ResponseBody>, t: Throwable ->

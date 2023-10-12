@@ -8,39 +8,48 @@
     tools:context=".ListSuccursalesFragment">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnDeconnexion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="#D0D0D0"
         android:text="@string/btnDeconnexion"
-        android:textColor="@color/design_default_color_error"
+        android:textColor="@color/rouge_projet1"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="639dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@+id/btnAjouterVille"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button2" />
+        app:layout_constraintTop_toBottomOf="@id/btnDeconnexion" />
 
     <Button
         android:id="@+id/btnAjouterVille"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="#D0D0D0"
+        android:backgroundTint="@color/gris_bg_projet1"
         android:text="@string/btnAjouterVille"
-        android:textColor="#0000FF"
+        android:textColor="@color/bleu_projet1"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
+
+    <TextView
+        android:id="@+id/tvMsgRecycler"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="@+id/recyclerView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDeconnexion" />
 </androidx.constraintlayout.widget.ConstraintLayout>

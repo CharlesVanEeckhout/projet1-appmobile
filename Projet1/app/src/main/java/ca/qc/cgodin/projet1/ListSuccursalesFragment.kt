@@ -2,6 +2,7 @@ package ca.qc.cgodin.projet1
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,8 +15,6 @@ import com.google.gson.Gson
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
-
-private const val ARG_AUT = "Aut"
 
 /**
  * A simple [Fragment] subclass.
@@ -54,19 +53,14 @@ class ListSuccursalesFragment : Fragment() {
         binding.btnAjouterVille.setOnClickListener {
 
         }
+        binding.btnDeconnexion.setOnClickListener {
+
+        }
 
         val succursaleListAdapter = SuccursaleListAdapter(inflater.context)
         binding.recyclerView.adapter = succursaleListAdapter
 
-        viewModel.listeSuccursale(ListeSuccursaleSchema(aut),
-            { _: Call<ResponseBody>, response: Response<ResponseBody> ->
-                val responseJson: String = response.body()?.string() ?: "null"
-                val listeSuccursale: ListeSuccursaleResponse = Gson().fromJson(responseJson, ListeSuccursaleResponse::class.java)
-                succursaleListAdapter.setSuccursales(listeSuccursale.succursales)
-            },
-            { _: Call<ResponseBody>, t: Throwable ->
-                // TODO: setText(resources.getText(R.string.erreur_timeout))
-            })
+
 
         // TODO: setonclick boutons edit et delete des item du adapter
 
@@ -75,13 +69,38 @@ class ListSuccursalesFragment : Fragment() {
         return view
     }
 
+    override fun onStart() {
+        super.onStart()
+        miseAJourRecyclerView()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 
+    private fun miseAJourRecyclerView() {
+        binding.tvMsgRecycler.setText("")
+        viewModel.listeSuccursale(ListeSuccursaleSchema(aut),
+            { _: Call<ResponseBody>, response: Response<ResponseBody> ->
+                val responseJson: String = response.body()?.string() ?: "null"
+                Log.i("ListSuccursalesFragment miseAJourRecyclerView responseJson", responseJson)
+                val listeSuccursale: ListeSuccursaleResponse = Gson().fromJson(responseJson, ListeSuccursaleResponse::class.java)
+                Log.i("ListSuccursalesFragment miseAJourRecyclerView listeSuccursale", listeSuccursale.succursales.toString())
+                /*for(succursale in listeSuccursale.succursales){
+                    succursale.Aut = aut
+                }*/
+                (binding.recyclerView.adapter as SuccursaleListAdapter).setSuccursales(listeSuccursale.succursales)
+            },
+            { _: Call<ResponseBody>, t: Throwable ->
+                binding.tvMsgRecycler.setText(resources.getText(R.string.erreur_timeout))
+            })
+    }
+
 
     companion object {
+        const val ARG_AUT = "Aut"
+
         /**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.

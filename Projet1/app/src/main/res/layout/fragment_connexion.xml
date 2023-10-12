@@ -11,8 +11,8 @@
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        android:layout_height="150dp"
+        app:srcCompat="@drawable/user" />
 
     <TextView
         android:id="@+id/lblTitre"
@@ -21,71 +21,83 @@
         android:layout_marginVertical="20dp"
         android:text="@string/txt_identifiezVous"
         android:textAlignment="center"
-        android:textColor="#0000FF"
+        android:textColor="@color/bleu_projet1"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="41dp"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginVertical="10dp"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/lblID"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_weight="1"
             android:text="@string/txt_Id"
-            android:textColor="#0000FF"
-            android:textSize="16sp" />
+            android:textColor="@color/bleu_projet1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/lblMDP"
+            app:layout_constraintEnd_toStartOf="@+id/editID"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editID"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="text"
             android:textSize="20sp"
-            tools:ignore="TouchTargetSizeCheck" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="37dp"
-        android:layout_marginHorizontal="5dp"
-        android:layout_marginVertical="10dp"
-        android:orientation="horizontal">
+            app:layout_constraintBottom_toTopOf="@+id/editMDP"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/editMDP"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/lblMDP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
             android:layout_weight="1"
             android:text="@string/txt_mdp"
-            android:textColor="#0000FF"
-            android:textSize="16sp" />
+            android:textColor="@color/bleu_projet1"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/editMDP"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lblID" />
 
         <EditText
             android:id="@+id/editMDP"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="text"
-            android:textSize="20sp" />
-    </LinearLayout>
+            android:password="true"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/lblMDP"
+            app:layout_constraintTop_toBottomOf="@+id/editID" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/btnConnexion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="10dp"
-        android:backgroundTint="#D0D0D0"
+        android:backgroundTint="@color/gris_bg_projet1"
         android:text="@string/btnConnexion"
-        android:textColor="#0000FF"
+        android:textColor="@color/bleu_projet1"
         android:textSize="16sp"
         android:textStyle="bold" />
 
@@ -100,7 +112,8 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/border" />
+            android:background="@drawable/border"
+            android:textColor="@color/mauve_projet1" />
     </LinearLayout>
 
 </LinearLayout>
