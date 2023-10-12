@@ -42,7 +42,6 @@ class ConnexionFragment : Fragment() {
         _binding = FragmentConnexionBinding.inflate(layoutInflater, container, false)
 
         binding.btnConnexion.setOnClickListener {
-            //TODO: validation textbox
             binding.tvResultatConnexion.setText(resources.getText(R.string.connexion_attente))
             val strId = binding.editID.text.toString()
             val strMdp = binding.editMDP.text.toString()

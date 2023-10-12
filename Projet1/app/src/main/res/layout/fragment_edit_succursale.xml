@@ -14,7 +14,7 @@
         app:srcCompat="@drawable/ville2" />
 
     <EditText
-        android:id="@+id/idVilleModifiee"
+        android:id="@+id/tbVilleModifiee"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
@@ -24,7 +24,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/idBudgetModifie"
+        android:id="@+id/tbBudgetModifie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"

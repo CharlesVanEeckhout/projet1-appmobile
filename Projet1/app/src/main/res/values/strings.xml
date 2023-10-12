@@ -2,10 +2,8 @@
     <string name="app_name">Gestion des succursales</string>
     <string name="add_name">Ajout d\'une succursale</string>
     <string name="edit_name">Modification d\'une succursale</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="ville">Ville : </string>
-    <string name="budget">Budget : </string>
+    <string name="ville">Ville :</string>
+    <string name="budget">Budget :</string>
     <string name="btnAjouterVille">Ajouter une ville</string>
     <string name="hint_nomVille">Nom de la ville</string>
     <string name="hint_budget">Budget alloué</string>

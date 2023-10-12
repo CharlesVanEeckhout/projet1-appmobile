@@ -36,7 +36,7 @@ class ListSuccursalesFragment : Fragment() {
             _aut = it.getLong(ARG_AUT,-1)
         }
         if(aut < 0 || aut > 1e12-1){
-            throw Exception("aut invalide: " + aut.toString())
+            throw Exception("aut invalide: $aut")
         }
     }
 
@@ -87,6 +87,7 @@ class ListSuccursalesFragment : Fragment() {
                 Log.i("ListSuccursalesFragment miseAJourRecyclerView responseJson", responseJson)
                 val listeSuccursale: ListeSuccursaleResponse = Gson().fromJson(responseJson, ListeSuccursaleResponse::class.java)
                 Log.i("ListSuccursalesFragment miseAJourRecyclerView listeSuccursale", listeSuccursale.succursales.toString())
+
                 /*for(succursale in listeSuccursale.succursales){
                     succursale.Aut = aut
                 }*/
