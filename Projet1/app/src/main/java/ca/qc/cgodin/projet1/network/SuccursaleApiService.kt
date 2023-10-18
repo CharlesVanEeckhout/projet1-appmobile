@@ -12,6 +12,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
+import retrofit2.http.HTTP
 import retrofit2.http.POST
 
 interface SuccursaleApiService {
@@ -27,8 +28,8 @@ interface SuccursaleApiService {
     fun budgetSuccursale(@Body body: BudgetSuccursale): Call<ResponseBody>
     @POST("/succursales/Succursale-Ajout")
     fun ajoutSuccursale(@Body body: AjoutSuccursale): Call<ResponseBody>
-    @DELETE("/succursales/Succursale-Retrait")
+    @HTTP(method = "DELETE", path="/succursales/Succursale-Retrait", hasBody = true)
     fun retraitSuccursale(@Body body: RetraitSuccursale): Call<ResponseBody>
-    @DELETE("/succursales/Succursale-Suppression")
+    @HTTP(method = "DELETE", path="/succursales/Succursale-Suppression", hasBody = true)
     fun suppressionSuccursale(@Body body: SuppressionSuccursale): Call<ResponseBody>
 }

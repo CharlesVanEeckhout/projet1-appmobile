@@ -71,7 +71,6 @@ class ConnexionFragment : Fragment() {
                             binding.tvResultatConnexion.setText(resources.getText(R.string.erreur_connexion_invalide))
                         }
                         else{
-                            //TODO: change fragment à ListSuccursalesFragment, passe aut en paramètre
                             val aut = intId.toString().padStart(7, '0') +
                                     intPartieMdp.toString().padStart(5, '0')
 

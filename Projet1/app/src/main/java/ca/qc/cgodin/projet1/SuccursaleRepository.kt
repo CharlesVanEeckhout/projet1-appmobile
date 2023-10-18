@@ -15,6 +15,7 @@ import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import retrofit2.http.HTTP
 
 class SuccursaleRepository(private val succusaleDao: SuccursaleDao) {
     // Room execute toutes les requêtes dans un thread séparé.
@@ -156,6 +157,7 @@ class SuccursaleRepository(private val succusaleDao: SuccursaleDao) {
             }
         )
     }
+
 
     fun retraitSuccursale(
         body: RetraitSuccursale,

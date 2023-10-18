@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
@@ -53,21 +54,24 @@ class EditSuccursaleFragment : Fragment() {
         val view = binding.root
         application = activity?.applicationContext as Application
 
+        binding.tvVilleModifiee.setText(args.ville)
+        binding.tvBudgetModifie.setText(args.budget.toString())
+
         binding.btnModifiee.setOnClickListener {
-            val strBudget = binding.tbBudgetModifie.text.toString()
-            val strVille = binding.tbVilleModifiee.text.toString()
-            if(strVille.isEmpty()){
-                //TODO: binding.tvResultatConnexion.setText(resources.getText(R.string.erreur_connexion_invalide))
+            val strBudget = binding.tvBudgetModifie.text.toString()
+            val strVille = binding.tvVilleModifiee.text.toString()
+            if(strVille.isEmpty() || strVille.length <2 || strVille.length > 15){
+                binding.tvErreurValidationModifier.setText(resources.getText(R.string.erreur_ajoutSuccursale_ville_invalide))
                 return@setOnClickListener
             }
             val intBudget: Int
             try{ intBudget = strBudget.toInt() }
             catch (e: NumberFormatException){
-                //TODO: binding.tvResultatConnexion.setText(resources.getText(R.string.erreur_connexion_invalide))
+                binding.tvErreurValidationModifier.setText(resources.getText(R.string.erreur_ajoutSuccursale_budget_invalide))
                 return@setOnClickListener
             }
             if(intBudget < 500 || intBudget >= 10000000){
-                //TODO: budget invalide
+                binding.tvErreurValidationModifier.setText(resources.getText(R.string.erreur_ajoutSuccursale_budget_invalide))
                 return@setOnClickListener
             }
 
@@ -88,7 +92,7 @@ class EditSuccursaleFragment : Fragment() {
                         ajoutSuccursale(ajoutSuccursaleSchema)
                     },
                     { _: Call<ResponseBody>, t: Throwable ->
-                        //TODO: binding.tvMsgRecycler.setText(resources.getText(R.string.erreur_timeout))
+                        binding.tvErreurValidationModifier.setText(resources.getText(R.string.erreur_timeout))
                     })
             }
             else{
@@ -109,7 +113,13 @@ class EditSuccursaleFragment : Fragment() {
                 val ajoutSuccursale: AjoutSuccursaleResponse = Gson().fromJson(responseJson, AjoutSuccursaleResponse::class.java)
                 if(ajoutSuccursale.statut == "PASOK"){
                     //rien n'a changé
-                    TODO("rien n'a changé")
+                    val action = EditSuccursaleFragmentDirections
+                        .actionEditSuccursaleFragmentToListSuccursalesFragment(
+                            args.aut
+                        )
+                    findNavController().navigate(action)
+
+                    Toast.makeText(activity, resources.getText(R.string.erreur_modificationSuccursale_invalide), Toast.LENGTH_SHORT).show()
                 }
                 else{
                     //modification réussie

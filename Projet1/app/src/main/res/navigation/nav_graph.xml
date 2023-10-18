@@ -52,6 +52,9 @@
         <argument
             android:name="ville"
             app:argType="string" />
+        <argument
+            android:name="budget"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/connexionFragment"

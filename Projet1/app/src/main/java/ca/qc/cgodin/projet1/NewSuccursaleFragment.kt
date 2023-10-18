@@ -2,11 +2,24 @@ package ca.qc.cgodin.projet1
 
 import android.app.Application
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import ca.qc.cgodin.projet1.databinding.FragmentNewSuccursaleBinding
+import ca.qc.cgodin.projet1.model.Succursale
+import ca.qc.cgodin.projet1.model.data.AjoutSuccursale
+import ca.qc.cgodin.projet1.model.response.AjoutSuccursaleResponse
+import ca.qc.cgodin.projet1.model.response.ErrorResponse
+import com.google.gson.Gson
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Response
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -25,7 +38,16 @@ class NewSuccursaleFragment : Fragment() {
 
     private var _binding: FragmentNewSuccursaleBinding? = null
     private val binding get() = _binding!!
-    private lateinit var application : Application;
+    private lateinit var application: Application;
+    private val args: NewSuccursaleFragmentArgs by navArgs()
+
+    private val succursaleViewModel: SuccursaleViewModel by lazy {
+        ViewModelProvider(
+            this,
+            SuccursaleViewModelFactory(application)
+        ).get(SuccursaleViewModel::class.java)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -41,13 +63,85 @@ class NewSuccursaleFragment : Fragment() {
         _binding = FragmentNewSuccursaleBinding.inflate(inflater, container, false)
 
         val view = binding.root
-        application = activity?.applicationContext  as Application
+        application = activity?.applicationContext as Application
 
+        Log.i("Aut ", args.aut.toString())
         //set les deux textBox au départ
         binding.btnAjout.setOnClickListener {
+            val ville = binding.tvVille.text.toString();
+            val budget = binding.tvAjoutBudget.text.toString().toIntOrNull() ?: 0
 
+            val addSuccursale = AjoutSuccursale(args.aut, ville, budget)
+            val booVille = (ville.length in 2..15)
+            val booBudget = (budget in 500..10000000)
+
+            Log.i("Résultats : Budget", booBudget.toString())
+            Log.i("Résultats : Ville", booBudget.toString())
+            if (!booVille) {
+                binding.tvErreurValidationAjouter.text = resources.getText(R.string.erreur_ajoutSuccursale_ville_invalide);
+            }
+            else if (!booBudget) {
+                binding.tvErreurValidationAjouter.text = resources.getText(R.string.erreur_ajoutSuccursale_budget_invalide);
+            }
+            else {
+            succursaleViewModel.ajoutSuccursale(addSuccursale,
+                { _: Call<ResponseBody>, response: Response<ResponseBody> ->
+                    val responseJson: String = response.body()?.string() ?: "null"
+                    val succursaleAjout: AjoutSuccursaleResponse =
+                        Gson().fromJson(responseJson, AjoutSuccursaleResponse::class.java)
+                    val error: ErrorResponse =
+                        Gson().fromJson(responseJson, ErrorResponse::class.java)
+
+                    if (error.error == null) {
+                        when (succursaleAjout.statut) {
+                            "OKI" -> {
+                                val action =
+                                    NewSuccursaleFragmentDirections.actionNewSuccursaleFragmentToListSuccursalesFragment(
+                                        args.aut
+                                    )
+                                findNavController().navigate(action)
+                                Toast.makeText(
+                                    activity,
+                                    resources.getText(R.string.feedback_ajoutSuccursale_valide),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                            "OKM" -> {
+                                val action =
+                                    NewSuccursaleFragmentDirections.actionNewSuccursaleFragmentToListSuccursalesFragment(
+                                        args.aut
+                                    )
+                                findNavController().navigate(action)
+                                Toast.makeText(
+                                    activity,
+                                    resources.getText(R.string.feedback_modificationSuccursale_valide),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+
+                            else -> {
+                                Toast.makeText(
+                                    activity,
+                                    resources.getText(R.string.erreur_ajoutSuccursale_invalide),
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                    }
+                },
+                { _: Call<ResponseBody>, t: Throwable ->
+                    Toast.makeText(
+                        activity,
+                        resources.getText(R.string.erreur_timeout),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                })
+            }
+
+//            val succursale = Succursale(args.aut, ville, budget)
+//            succursaleViewModel.insert(succursale)
         }
-
 
 
         // Inflate the layout for this fragment

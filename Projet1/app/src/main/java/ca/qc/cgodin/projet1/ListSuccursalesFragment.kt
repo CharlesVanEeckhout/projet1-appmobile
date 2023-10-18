@@ -7,11 +7,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import ca.qc.cgodin.projet1.databinding.FragmentListSuccursalesBinding
 import ca.qc.cgodin.projet1.model.response.ListeSuccursaleResponse
 import ca.qc.cgodin.projet1.model.data.ListeSuccursale
+import ca.qc.cgodin.projet1.model.data.RetraitSuccursale
+import ca.qc.cgodin.projet1.model.response.ErrorResponse
+import ca.qc.cgodin.projet1.model.response.RetraitSuccursaleResponse
 import com.google.gson.Gson
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -29,7 +33,6 @@ class ListSuccursalesFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var application : Application;
     private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.nav_graph)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,18 +52,49 @@ class ListSuccursalesFragment : Fragment() {
 
         //set les deux textBox au départ
         binding.btnAjouterVille.setOnClickListener {
-
+            val action = ListSuccursalesFragmentDirections.actionListSuccursalesFragmentToNewSuccursaleFragment(args.aut)
+            findNavController().navigate(action)
         }
         binding.btnDeconnexion.setOnClickListener {
-
+            findNavController().navigate(R.id.action_listSuccursalesFragment_to_connexionFragment)
         }
 
         val succursaleListAdapter = SuccursaleListAdapter(inflater.context)
         binding.recyclerView.adapter = succursaleListAdapter
 
         // TODO: setonclick boutons edit et delete des item du adapter
+        succursaleListAdapter.setOnItemEditListener {
+            val action = ListSuccursalesFragmentDirections.actionListSuccursalesFragmentToEditSuccursaleFragment(it.Ville, it.Budget, args.aut)
+            findNavController().navigate(action)
+        }
 
+        succursaleListAdapter.setOnItemDeleteListener {
+            val succursaleRemove = RetraitSuccursale(args.aut, it.Ville)
+            viewModel.retraitSuccursale(succursaleRemove,
+                { _: Call<ResponseBody>, response: Response<ResponseBody> ->
+                    val responseJson: String = response.body()?.string() ?: "null"
+                    val retraitSuccursale: RetraitSuccursaleResponse = Gson().fromJson(responseJson, RetraitSuccursaleResponse::class.java)
+                    val error: ErrorResponse = Gson().fromJson(responseJson, ErrorResponse::class.java)
+                    if(error.error == null){
+                        when (retraitSuccursale.statut) {
+                            "PASOK" -> {
+                                binding.tvMsgRecycler.text = resources.getText(R.string.erreur_retraitSuccursale_invalide)
+                            }
+                            "OK" -> {
+                                binding.tvMsgRecycler.text = resources.getText(R.string.feedback_retraitSuccursale_valide)
+                                miseAJourRecyclerView()
+                            }
+                        }
+                    }
+                    else{
 
+                        binding.tvMsgRecycler.text = error.error
+                    }
+                },
+                { _: Call<ResponseBody>, t: Throwable ->
+                    binding.tvMsgRecycler.setText(resources.getText(R.string.erreur_timeout))
+                })
+        }
 
         // Inflate the layout for this fragment
         return view

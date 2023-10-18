@@ -17,4 +17,13 @@
     <string name="connexion_attente">En attente de validation…</string>
     <string name="erreur_timeout">Échec de la communication avec le serveur. Réessayez plus tard.</string>
     <string name="erreur_connexion_invalide">Connexion invalide.</string>
+    <string name="erreur_ajoutSuccursale_invalide">Ajout de la succursale impossible.</string>
+    <string name="erreur_ajoutSuccursale_ville_invalide">La ville doit être composée de 2 à 15 caractères.</string>
+    <string name="erreur_ajoutSuccursale_budget_invalide">Le budget doit être un nombre compris entre 500 à 10 000 000.</string>
+    <string name="erreur_retraitSuccursale_invalide">La succursale n\'a pas pu être supprimée.</string>
+    <string name="erreur_modificationSuccursale_invalide">La succursale n\'a pas pu être modifiée.</string>
+    <string name="feedback_ajoutSuccursale_valide">La succursale a été ajoutée.</string>
+    <string name="feedback_modificationSuccursale_valide">La succursale a été modifiée.</string>
+    <string name="feedback_retraitSuccursale_valide">La succursale a été supprimée.</string>
+    <string name="ajout_buget">%d $</string>
 </resources>
