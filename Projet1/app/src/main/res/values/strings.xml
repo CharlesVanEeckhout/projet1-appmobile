@@ -11,6 +11,7 @@
     <string name="btnModifier">Modifier</string>
     <string name="btnDeconnexion">Déconnexion</string>
     <string name="btnConnexion">Connexion</string>
+    <string name="btnAfficherFavoris">Afficher les favoris</string>
     <string name="txt_identifiezVous">Identifiez-vous!</string>
     <string name="txt_Id">Identifiant :</string>
     <string name="txt_mdp">Mot de passe :</string>
@@ -26,4 +27,6 @@
     <string name="feedback_modificationSuccursale_valide">La succursale a été modifiée.</string>
     <string name="feedback_retraitSuccursale_valide">La succursale a été supprimée.</string>
     <string name="ajout_buget">%d $</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

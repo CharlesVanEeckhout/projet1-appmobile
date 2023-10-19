@@ -36,6 +36,9 @@
             android:name="aut"
             app:argType="long"
             android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_listSuccursalesFragment_to_listeFavorisFragment"
+            app:destination="@id/listeFavorisFragment" />
     </fragment>
     <fragment
         android:id="@+id/editSuccursaleFragment"
@@ -64,5 +67,17 @@
         <action
             android:id="@+id/action_connexionFragment_to_listSuccursalesFragment"
             app:destination="@id/listSuccursalesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listeFavorisFragment"
+        android:name="ca.qc.cgodin.projet1.ListFavorisFragment"
+        android:label="fragment_liste_favoris"
+        tools:layout="@layout/fragment_list_favoris" >
+        <action
+            android:id="@+id/action_listeFavorisFragment_to_listSuccursalesFragment"
+            app:destination="@id/listSuccursalesFragment" />
+        <action
+            android:id="@+id/action_listeFavorisFragment_self2"
+            app:destination="@id/listeFavorisFragment" />
     </fragment>
 </navigation>
