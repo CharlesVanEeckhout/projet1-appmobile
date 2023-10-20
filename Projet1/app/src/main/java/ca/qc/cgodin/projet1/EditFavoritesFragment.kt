@@ -13,6 +13,8 @@ import androidx.navigation.navGraphViewModels
 import ca.qc.cgodin.projet1.databinding.FragmentEditFavoritesBinding
 import ca.qc.cgodin.projet1.databinding.FragmentEditSuccursaleBinding
 import ca.qc.cgodin.projet1.model.Succursale
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -72,15 +74,14 @@ class EditFavoritesFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            viewModel.getSuccursale(args.aut, strVille)
-            Log.i("Valeur Succursale ", viewModel.oneSuccursale.toString())
+            GlobalScope.async { viewModel.getSuccursale(args.aut, strVille) }
+          Log.i("Valeur Succursale ", viewModel.oneSuccursale.toString())
             val succursale = viewModel.oneSuccursale
             val succursaleX = Succursale(args.aut, strVille, intBudget)
             viewModel.update(succursaleX)
             binding.tvErreurValidationFavModifier.text = resources.getText(R.string.feedback_modifierSuccursaleFav_valide)
 
             Toast.makeText(activity, resources.getText(R.string.feedback_modifierSuccursaleFav_valide), Toast.LENGTH_SHORT).show()
-
         }
             return view
     }

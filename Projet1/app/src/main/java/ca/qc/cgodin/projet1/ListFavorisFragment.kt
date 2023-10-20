@@ -55,7 +55,7 @@ class ListFavorisFragment : Fragment() {
 
         succursaleListAdapter.setOnItemDeleteListener { succursale ->
             succursale.let { viewModel.delete(succursale)
-                Toast.makeText(activity, resources.getText(R.string.feedback_retraitSuccursale_valide), Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, resources.getText(R.string.feedback_retraitSuccursaleFav_valide), Toast.LENGTH_SHORT).show()
             }
         }
 
@@ -67,6 +67,8 @@ class ListFavorisFragment : Fragment() {
         succursaleListAdapter.setOnItemAddFavoriteListener {
 
         }
+
+
 
         val view = binding.root
         return view
