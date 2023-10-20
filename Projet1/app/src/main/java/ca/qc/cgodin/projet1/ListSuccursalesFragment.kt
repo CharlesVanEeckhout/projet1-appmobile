@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
@@ -83,6 +84,7 @@ class ListSuccursalesFragment : Fragment() {
             succursale.let {
                 succursale.Aut = args.aut
                 viewModel.insert(succursale)
+                Toast.makeText(activity, resources.getText(R.string.feedback_ajoutSuccursaleFav_valide), Toast.LENGTH_SHORT).show()
                 Log.i("Succursale", succursale.toString())
             }
         }
@@ -97,21 +99,25 @@ class ListSuccursalesFragment : Fragment() {
                     if(error.error == null){
                         when (retraitSuccursale.statut) {
                             "PASOK" -> {
-                                binding.tvMsgRecycler.text = resources.getText(R.string.erreur_retraitSuccursale_invalide)
+//                                binding.tvMsgRecycler.text = resources.getText(R.string.erreur_retraitSuccursale_invalide)
+                                Toast.makeText(activity, resources.getText(R.string.erreur_retraitSuccursale_invalide), Toast.LENGTH_SHORT).show()
                             }
                             "OK" -> {
-                                binding.tvMsgRecycler.text = resources.getText(R.string.feedback_retraitSuccursale_valide)
+//                                binding.tvMsgRecycler.text = resources.getText(R.string.feedback_retraitSuccursale_valide)
+                                Toast.makeText(activity, resources.getText(R.string.feedback_retraitSuccursale_valide), Toast.LENGTH_SHORT).show()
                                 miseAJourRecyclerView()
                             }
                         }
                     }
                     else{
 
-                        binding.tvMsgRecycler.text = error.error
+//                        binding.tvMsgRecycler.text = error.error
+                        Toast.makeText(activity, error.error, Toast.LENGTH_SHORT).show()
                     }
                 },
                 { _: Call<ResponseBody>, t: Throwable ->
-                    binding.tvMsgRecycler.setText(resources.getText(R.string.erreur_timeout))
+//                    binding.tvMsgRecycler.setText(resources.getText(R.string.erreur_timeout))
+                    Toast.makeText(activity, resources.getText(R.string.erreur_timeout), Toast.LENGTH_SHORT).show()
                 })
         }
 
@@ -145,7 +151,8 @@ class ListSuccursalesFragment : Fragment() {
                 (binding.recyclerView.adapter as SuccursaleListAdapter).setSuccursales(listeSuccursale.succursales)
             },
             { _: Call<ResponseBody>, t: Throwable ->
-                binding.tvMsgRecycler.setText(resources.getText(R.string.erreur_timeout))
+//                binding.tvMsgRecycler.setText(resources.getText(R.string.erreur_timeout))
+                Toast.makeText(activity, resources.getText(R.string.erreur_timeout), Toast.LENGTH_SHORT).show()
             })
     }
 

@@ -33,6 +33,7 @@
     <string name="feedback_retraitSuccursale_valide">La succursale a été supprimée.</string>
     <string name="feedback_afficherBudget_valide">Le budget de cette succursale est de %d $.</string>
     <string name="feedback_modifierSuccursaleFav_valide">La modification a été effectuée.</string>
+    <string name="feedback_ajoutSuccursaleFav_valide">La succursale a été ajoutée aux favoris.</string>
     <string name="ajout_buget">%d $</string>
     <string name="txt_afficherBudget">Affichage du budget d\'une succursale</string>
     <!-- TODO: Remove or change this placeholder text -->Lava;
