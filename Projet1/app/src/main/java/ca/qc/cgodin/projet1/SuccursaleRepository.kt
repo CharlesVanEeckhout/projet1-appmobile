@@ -1,5 +1,6 @@
 package ca.qc.cgodin.projet1
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import ca.qc.cgodin.projet1.model.data.Login
 import ca.qc.cgodin.projet1.model.Succursale
@@ -21,6 +22,7 @@ class SuccursaleRepository(private val succusaleDao: SuccursaleDao) {
     // Room execute toutes les requêtes dans un thread séparé.
     // Observed LiveData will notify the observer when the data has changed.
     val allSuccursales: LiveData<List<Succursale>> = succusaleDao.getSuccursales()
+    lateinit var oneSuccursale: LiveData<Succursale?>
 
     suspend fun insert(succursale: Succursale){
         succusaleDao.insert(succursale)
@@ -34,8 +36,9 @@ class SuccursaleRepository(private val succusaleDao: SuccursaleDao) {
         succusaleDao.updateSuccursale(succursale)
     }
 
-    suspend fun getSuccursale(Aut: Int, Ville: String) {
-        succusaleDao.getSuccursale(Aut, Ville)
+    suspend fun getSuccursale(Aut: Long, Ville: String) {
+       oneSuccursale = succusaleDao.getSuccursale(Aut, Ville)
+        Log.i("Repository one: ", oneSuccursale.toString() )
     }
 
     fun connexionStudent(

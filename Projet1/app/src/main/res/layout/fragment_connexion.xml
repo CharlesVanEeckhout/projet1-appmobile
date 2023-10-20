@@ -113,6 +113,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/border"
+            android:gravity="center"
             android:textColor="@color/mauve_projet1" />
     </LinearLayout>
 

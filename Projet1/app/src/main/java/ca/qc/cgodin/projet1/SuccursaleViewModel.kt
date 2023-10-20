@@ -1,6 +1,7 @@
 package ca.qc.cgodin.projet1
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -25,6 +26,7 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
     // - We can put an observer on the data (instead of polling for changes) and only update the UI when the data actually changes.
     // - Repository is completely separated from the UI through the ViewModel.
     val allSuccursales: LiveData<List<Succursale>>
+    lateinit var oneSuccursale: LiveData<Succursale?>
     init {
         val succursalesDao =
             SuccursaleRoomDatabase.getDatabase(application).succursaleDao()
@@ -109,7 +111,10 @@ class SuccursaleViewModel (application: Application) : AndroidViewModel(applicat
         repository.updateSuccursale(succursale)
     }
 
-    fun getSuccursale(Aut: Int, Ville: String) = viewModelScope.launch(Dispatchers.IO) {
+    fun getSuccursale(Aut: Long, Ville: String) = viewModelScope.launch(Dispatchers.IO) {
         repository.getSuccursale(Aut, Ville)
+        oneSuccursale = repository.oneSuccursale
+        Log.i("Repository one: ", oneSuccursale.toString() )
     }
+
 }

@@ -49,6 +49,7 @@ class EditSuccursaleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.title = resources.getString(R.string.edit_name)
         _binding = FragmentEditSuccursaleBinding.inflate(inflater, container, false)
 
         val view = binding.root
@@ -99,6 +100,8 @@ class EditSuccursaleFragment : Fragment() {
                 // ajoute la nouvelle succursale en écrasant la vieille succursale
                 val ajoutSuccursaleSchema = AjoutSuccursale(args.aut, strVille, intBudget)
                 ajoutSuccursale(ajoutSuccursaleSchema)
+                Toast.makeText(activity, resources.getText(R.string.feedback_modifierSuccursaleFav_valide), Toast.LENGTH_SHORT).show()
+
             }
         }
 

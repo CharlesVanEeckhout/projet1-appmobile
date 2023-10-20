@@ -8,24 +8,13 @@
     android:orientation="vertical"
     tools:context=".DisplayBudgetFragment">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="16dp"
-        android:layout_marginTop="68dp"
-        android:text="@string/txt_afficherBudget"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="214dp"
         android:layout_height="225dp"
         android:layout_gravity="center"
         android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="5dp"
+        android:layout_marginVertical="10dp"
         android:src="@drawable/wallet" />
 
     <EditText
@@ -36,6 +25,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="5dp"
         android:ems="10"
+        android:hint="@string/hint_nomVille"
         android:inputType="text" />
 
     <TextView

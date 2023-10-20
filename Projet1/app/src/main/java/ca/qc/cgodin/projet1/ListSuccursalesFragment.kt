@@ -45,6 +45,7 @@ class ListSuccursalesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.title = resources.getString(R.string.app_name)
         _binding = FragmentListSuccursalesBinding.inflate(inflater, container, false)
 
         val view = binding.root
@@ -71,10 +72,19 @@ class ListSuccursalesFragment : Fragment() {
         val succursaleListAdapter = SuccursaleListAdapter(inflater.context)
         binding.recyclerView.adapter = succursaleListAdapter
 
+        Log.i("Count", succursaleListAdapter.itemCount.toString())
         // TODO: setonclick boutons edit et delete des item du adapter
         succursaleListAdapter.setOnItemEditListener {
             val action = ListSuccursalesFragmentDirections.actionListSuccursalesFragmentToEditSuccursaleFragment(it.Ville, it.Budget, args.aut)
             findNavController().navigate(action)
+        }
+
+        succursaleListAdapter.setOnItemAddFavoriteListener { succursale ->
+            succursale.let {
+                succursale.Aut = args.aut
+                viewModel.insert(succursale)
+                Log.i("Succursale", succursale.toString())
+            }
         }
 
         succursaleListAdapter.setOnItemDeleteListener {
@@ -126,11 +136,12 @@ class ListSuccursalesFragment : Fragment() {
                 val responseJson: String = response.body()?.string() ?: "null"
                 Log.i("ListSuccursalesFragment miseAJourRecyclerView responseJson", responseJson)
                 val listeSuccursale: ListeSuccursaleResponse = Gson().fromJson(responseJson, ListeSuccursaleResponse::class.java)
+                for(succursale in listeSuccursale.succursales){
+                    succursale.Aut = args.aut
+                }
+
                 Log.i("ListSuccursalesFragment miseAJourRecyclerView listeSuccursale", listeSuccursale.succursales.toString())
 
-                /*for(succursale in listeSuccursale.succursales){
-                    succursale.Aut = args.aut
-                }*/
                 (binding.recyclerView.adapter as SuccursaleListAdapter).setSuccursales(listeSuccursale.succursales)
             },
             { _: Call<ResponseBody>, t: Throwable ->

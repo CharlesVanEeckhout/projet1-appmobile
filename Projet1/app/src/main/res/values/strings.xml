@@ -1,7 +1,10 @@
 <resources>
     <string name="app_name">Gestion des succursales</string>
+    <string name="connexion_name">Connexion</string>
     <string name="add_name">Ajout d\'une succursale</string>
     <string name="edit_name">Modification d\'une succursale</string>
+    <string name="favorite_name">Succursales favorites</string>
+    <string name="budget_name">Affichage du budget d\'une succursale</string>
     <string name="ville">Ville :</string>
     <string name="budget">Budget :</string>
     <string name="btnAjouterVille">Ajouter une ville</string>
@@ -29,6 +32,7 @@
     <string name="feedback_modificationSuccursale_valide">La succursale a été modifiée.</string>
     <string name="feedback_retraitSuccursale_valide">La succursale a été supprimée.</string>
     <string name="feedback_afficherBudget_valide">Le budget de cette succursale est de %d $.</string>
+    <string name="feedback_modifierSuccursaleFav_valide">La modification a été effectuée.</string>
     <string name="ajout_buget">%d $</string>
     <string name="txt_afficherBudget">Affichage du budget d\'une succursale</string>
     <!-- TODO: Remove or change this placeholder text -->Lava;

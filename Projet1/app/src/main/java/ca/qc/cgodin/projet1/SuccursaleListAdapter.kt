@@ -18,8 +18,10 @@ class SuccursaleListAdapter(
 ) : RecyclerView.Adapter<SuccursaleListAdapter.SuccursaleViewHolder>() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var succursales = emptyList<Succursale>() // Cached copy of succursales
+
     private lateinit var onItemEditListener: ((Succursale) -> Unit)
     private lateinit var onItemDeleteListener: ((Succursale) -> Unit)
+    private lateinit var ontItemAddFavoriteListener: ((Succursale) -> Unit)
 
 
     inner class SuccursaleViewHolder(val binding: RecyclerviewItemBinding) :
@@ -44,6 +46,10 @@ class SuccursaleListAdapter(
         holder.binding.btnDelete.setOnClickListener {
             onItemDeleteListener(current)
         }
+
+        holder.binding.btnFavoris.setOnClickListener {
+            ontItemAddFavoriteListener(current)
+        }
     }
 
     fun setSuccursales(succursales: List<Succursale>) {
@@ -59,5 +65,8 @@ class SuccursaleListAdapter(
     }
     fun setOnItemDeleteListener(listener: (Succursale) -> Unit){
         onItemDeleteListener = listener
+    }
+    fun setOnItemAddFavoriteListener(listener: (Succursale) -> Unit){
+        ontItemAddFavoriteListener = listener
     }
 }

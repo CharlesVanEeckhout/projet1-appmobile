@@ -43,6 +43,7 @@
         android:layout_marginHorizontal="16dp"
         android:layout_weight="0"
         android:background="@drawable/border"
+        android:gravity="center"
         android:textColor="@color/mauve_projet1" />
 
     <Button

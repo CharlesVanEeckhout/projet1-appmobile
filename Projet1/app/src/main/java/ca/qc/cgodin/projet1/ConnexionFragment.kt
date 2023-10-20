@@ -36,6 +36,7 @@ class ConnexionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.title = resources.getString(R.string.connexion_name)
         // Inflate the layout for this fragment
         _binding = FragmentConnexionBinding.inflate(layoutInflater, container, false)
 

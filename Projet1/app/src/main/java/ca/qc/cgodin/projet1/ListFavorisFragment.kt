@@ -3,12 +3,15 @@ package ca.qc.cgodin.projet1
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import ca.qc.cgodin.projet1.databinding.FragmentListFavorisBinding
@@ -25,12 +28,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ListFavorisFragment : Fragment() {
-    private var _binding: FragmentListFavorisBinding? = null!!
+    private var _binding: FragmentListFavorisBinding? = null
     private val binding get() = _binding!!
     private val viewModel: SuccursaleViewModel by navGraphViewModels(R.id.nav_graph)
+    private val args: ListFavorisFragmentArgs by navArgs()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -38,26 +42,41 @@ class ListFavorisFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        activity?.title = resources.getString(R.string.favorite_name)
+
         _binding = FragmentListFavorisBinding.inflate(inflater, container, false)
-        val adapter = SuccursaleListAdapter(activity as Context)
-        binding.recycleViewFavoris.adapter = adapter
+
+        val succursaleListAdapter = SuccursaleListAdapter(inflater.context)
+        binding.recycleViewFavoris.adapter = succursaleListAdapter
 
         viewModel.allSuccursales.observe(activity as LifecycleOwner, Observer { succursale ->
-            succursale?.let { adapter.setSuccursales(it) }
+            succursale?.let { succursaleListAdapter.setSuccursales(it) }
         })
 
-
-        adapter.setOnItemDeleteListener { succursale ->
-            succursale.let { viewModel.delete(succursale)}
+        succursaleListAdapter.setOnItemDeleteListener { succursale ->
+            succursale.let { viewModel.delete(succursale)
+                Toast.makeText(activity, resources.getText(R.string.feedback_retraitSuccursale_valide), Toast.LENGTH_SHORT).show()
+            }
         }
 
-        adapter.setOnItemEditListener { succursale ->
-            succursale.let { viewModel.insert(succursale) }
+        succursaleListAdapter.setOnItemEditListener { succursale ->
+            val action = ListFavorisFragmentDirections.actionListFavorisFragmentToEditFavoritesFragment(succursale.Ville, succursale.Budget, args.aut)
+            findNavController().navigate(action);
+        }
+
+        succursaleListAdapter.setOnItemAddFavoriteListener {
+
         }
 
         val view = binding.root
         return view
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
 
     companion object {
         /**

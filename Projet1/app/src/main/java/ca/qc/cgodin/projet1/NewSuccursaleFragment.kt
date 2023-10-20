@@ -60,6 +60,7 @@ class NewSuccursaleFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.title = resources.getString(R.string.add_name)
         _binding = FragmentNewSuccursaleBinding.inflate(inflater, container, false)
 
         val view = binding.root

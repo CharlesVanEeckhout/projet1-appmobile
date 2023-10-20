@@ -56,6 +56,7 @@ class DisplayBudgetFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activity?.title = resources.getString(R.string.budget_name)
         _binding = FragmentDisplayBudgetBinding.inflate(inflater, container, false)
         val view = binding.root
         application = activity?.applicationContext as Application
@@ -63,7 +64,7 @@ class DisplayBudgetFragment : Fragment() {
         binding.btnRechercher.setOnClickListener{
             val strVille = binding.editVilleRecherchee.text.toString()
             if(strVille.isEmpty() || strVille.length <2 || strVille.length > 15){
-                binding.tvErreurBudget.setText(resources.getText(R.string.erreur_ajoutSuccursale_ville_invalide))
+                binding.tvErreurBudget.text = resources.getText(R.string.erreur_ajoutSuccursale_ville_invalide)
                 return@setOnClickListener
             }
 

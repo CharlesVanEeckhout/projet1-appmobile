@@ -92,5 +92,31 @@
         <action
             android:id="@+id/action_listFavorisFragment_to_listSuccursalesFragment"
             app:destination="@id/listSuccursalesFragment" />
+        <argument
+            android:name="aut"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <action
+            android:id="@+id/action_listFavorisFragment_to_editFavoritesFragment"
+            app:destination="@id/editFavoritesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editFavoritesFragment"
+        android:name="ca.qc.cgodin.projet1.EditFavoritesFragment"
+        android:label="fragment_edit_favorites"
+        tools:layout="@layout/fragment_edit_favorites" >
+        <action
+            android:id="@+id/action_editFavoritesFragment_to_listFavorisFragment"
+            app:destination="@id/listFavorisFragment" />
+        <argument
+            android:name="aut"
+            app:argType="long"
+            android:defaultValue="-1L" />
+        <argument
+            android:name="ville"
+            app:argType="string" />
+        <argument
+            android:name="budget"
+            app:argType="integer" />
     </fragment>
 </navigation>
