@@ -12,6 +12,7 @@
     <string name="btnDeconnexion">Déconnexion</string>
     <string name="btnConnexion">Connexion</string>
     <string name="btnAfficherFavoris">Afficher les favoris</string>
+    <string name="btnRecherche">Afficher le budget</string>
     <string name="txt_identifiezVous">Identifiez-vous!</string>
     <string name="txt_Id">Identifiant :</string>
     <string name="txt_mdp">Mot de passe :</string>
@@ -23,10 +24,13 @@
     <string name="erreur_ajoutSuccursale_budget_invalide">Le budget doit être un nombre compris entre 500 à 10 000 000.</string>
     <string name="erreur_retraitSuccursale_invalide">La succursale n\'a pas pu être supprimée.</string>
     <string name="erreur_modificationSuccursale_invalide">La succursale n\'a pas pu être modifiée.</string>
+    <string name="erreur_afficherBudget_invalide">La succursale n\'existe pas.</string>
     <string name="feedback_ajoutSuccursale_valide">La succursale a été ajoutée.</string>
     <string name="feedback_modificationSuccursale_valide">La succursale a été modifiée.</string>
     <string name="feedback_retraitSuccursale_valide">La succursale a été supprimée.</string>
+    <string name="feedback_afficherBudget_valide">Le budget de cette succursale est de %d $.</string>
     <string name="ajout_buget">%d $</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="txt_afficherBudget">Affichage du budget d\'une succursale</string>
+    <!-- TODO: Remove or change this placeholder text -->Lava;
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

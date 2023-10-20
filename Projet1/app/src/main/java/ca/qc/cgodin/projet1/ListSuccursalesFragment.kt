@@ -60,8 +60,14 @@ class ListSuccursalesFragment : Fragment() {
         }
 
         binding.btnAfficherFavoris.setOnClickListener {
-            findNavController().navigate(R.id.action_listSuccursalesFragment_to_listeFavorisFragment)
+            findNavController().navigate(R.id.action_listSuccursalesFragment_to_listFavorisFragment)
         }
+
+        binding.btnAfficherBudget.setOnClickListener {
+            val action = ListSuccursalesFragmentDirections.actionListSuccursalesFragmentToDisplayBudgetFragment(args.aut)
+            findNavController().navigate(action)
+        }
+
         val succursaleListAdapter = SuccursaleListAdapter(inflater.context)
         binding.recyclerView.adapter = succursaleListAdapter
 

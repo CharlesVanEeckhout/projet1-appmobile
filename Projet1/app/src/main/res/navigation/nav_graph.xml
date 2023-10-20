@@ -37,8 +37,11 @@
             app:argType="long"
             android:defaultValue="-1L" />
         <action
-            android:id="@+id/action_listSuccursalesFragment_to_listeFavorisFragment"
-            app:destination="@id/listeFavorisFragment" />
+            android:id="@+id/action_listSuccursalesFragment_to_displayBudgetFragment"
+            app:destination="@id/displayBudgetFragment" />
+        <action
+            android:id="@+id/action_listSuccursalesFragment_to_listFavorisFragment"
+            app:destination="@id/listFavorisFragment" />
     </fragment>
     <fragment
         android:id="@+id/editSuccursaleFragment"
@@ -69,15 +72,25 @@
             app:destination="@id/listSuccursalesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/listeFavorisFragment"
+        android:id="@+id/displayBudgetFragment"
+        android:name="ca.qc.cgodin.projet1.DisplayBudgetFragment"
+        android:label="fragment_display_budget"
+        tools:layout="@layout/fragment_display_budget" >
+        <action
+            android:id="@+id/action_displayBudgetFragment_to_listSuccursalesFragment"
+            app:destination="@id/listSuccursalesFragment" />
+        <argument
+            android:name="aut"
+            app:argType="long"
+            android:defaultValue="-1L" />
+    </fragment>
+    <fragment
+        android:id="@+id/listFavorisFragment"
         android:name="ca.qc.cgodin.projet1.ListFavorisFragment"
-        android:label="fragment_liste_favoris"
+        android:label="fragment_list_favoris"
         tools:layout="@layout/fragment_list_favoris" >
         <action
-            android:id="@+id/action_listeFavorisFragment_to_listSuccursalesFragment"
+            android:id="@+id/action_listFavorisFragment_to_listSuccursalesFragment"
             app:destination="@id/listSuccursalesFragment" />
-        <action
-            android:id="@+id/action_listeFavorisFragment_self2"
-            app:destination="@id/listeFavorisFragment" />
     </fragment>
 </navigation>
